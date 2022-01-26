@@ -1,6 +1,7 @@
 package Tests;
 
 import org.junit.Test;
+import org.openqa.selenium.chrome.ChromeOptions;
 import pages.*;
 import pages.BookStore.BookStorePage;
 import pages.BookStore.LoginPage;
@@ -60,22 +61,16 @@ public class ElementsTests extends BaseTest {
         loginPage
                 .newUser()
                 .registerToStore();
+        registerPage.clickOnRegister();
         registerPage.backToLogin();
-        loginPage.login("dumby", "Abc-$1234");
-//        profilePage.bookStore();
-//        bookStorePage.chooseBook("Learning JavaScript Design Patterns");
-
-    }
-
-    @Test
-    public void loginOnBookstore() {
-        open(baseUrl + "login");
-        LoginPage loginPage = new LoginPage();
-        ProfilePage profilePage = new ProfilePage();
-        BookStorePage bookStorePage = new BookStorePage();
         loginPage.login("dumby", "Abc-$1234");
         profilePage.bookStore();
         bookStorePage.chooseBook("Learning JavaScript Design Patterns");
-
+        bookStorePage.addToCollection();
+        bookStorePage.goToProfile();
+        profilePage.bookWasAdded();
+        profilePage.deleteAllBooks();
+        profilePage.bookWasDeleted();
+        profilePage.deleteAccount();
     }
 }

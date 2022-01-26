@@ -9,7 +9,7 @@ public class LoginPage {
          return new RegisterPage();
      }
 
-     public LoginPage login(String name, String pass) {
+     public LoginPage login(String name, String pass) { //* kenny; Abc-$1234 *//
          $("#userName").setValue(name);
          $("#password").setValue(pass);
          $("#login").submit();

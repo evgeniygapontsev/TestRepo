@@ -1,13 +1,10 @@
 package pages.BookStore;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.selector.ByText;
 import com.github.javafaker.Faker;
-import org.openqa.selenium.By;
 import wrappers.InputBookstore;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.switchTo;
+import static com.codeborne.selenide.Selenide.*;
 
 public class RegisterPage {
     static Faker faker;
@@ -20,10 +17,19 @@ public class RegisterPage {
         new InputBookstore("password").addToForm("Abc-$1234");
         switchTo().frame($("#g-recaptcha iframe"));
         $("#recaptcha-anchor").click();
-        switchTo().defaultContent();
-        Configuration.timeout = 6000;
-        $(By.xpath("//button[contains(text(), 'Register')]")).click();
+        switchTo().parentFrame();
+        Configuration.timeout = 10000;
+//        $x("//button[contains(text(), 'Register')]").scrollTo();
+//        Configuration.timeout = 15000;
+//        $x("//button[contains(text(), 'Register')]").click();
 //        switchTo().alert().accept();
+    }
+
+    public void clickOnRegister() {
+        $x("//button[contains(text(), 'Register')]").scrollTo();
+        Configuration.timeout = 10000;
+        $x("//button[contains(text(), 'Register')]").click();
+        switchTo().alert().accept();
     }
 
     public void backToLogin() {
